@@ -1,0 +1,39 @@
+{
+  "name": "@stormbuf/vuepress-plugin-rss",
+  "version": "1.0.0",
+  "description": "Vuepress plugin - rss",
+  "keywords": [
+    "vuepress",
+    "plugin",
+    "vuepress-plugin",
+    "blog",
+    "feed",
+    "xml",
+    "rss",
+    "atom"
+  ],
+  "homepage": "https://github.com/stormbuf",
+  "bugs": {
+    "url": "https://github.com/stormbuf/vuepress-plugin-rss/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stormbuf/vuepress-plugin-rss.git"
+  },
+  "main": "lib/node/index.js",
+  "types": "lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "author": "stormbuf",
+  "license": "MIT",
+  "publishConfig": {
+    "": "public"
+  },
+  "dependencies": {
+    "feed": "^4.2.2"
+  },
+  "peerDependencies": {
+    "vuepress": "2.x"
+  }
+}
