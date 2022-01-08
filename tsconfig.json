@@ -1,21 +1,17 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
     /* Projects */
-
     /* Language and Environment */
     "target": "ES2018",
     /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
-
+    "rootDir": "./src",
     "outDir": "./lib",
     /* Modules */
     "module": "commonjs",
     /* Specify what module code is generated. */
-
     /* Emit */
-
     /* Interop Constraints */
     "esModuleInterop": true,
     /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
@@ -28,29 +24,26 @@
     "noImplicitAny": false, // 在表达式和声明上有隐含的 any类型时报错
     "strictNullChecks": true, // 启用严格的 null 检查
     "noImplicitThis": false, // 当 this 表达式值为 any 类型的时候，生成一个错误
-
     /* 额外的检查 */
     "noUnusedLocals": true, // 有未使用的变量时，抛出错误
     "noUnusedParameters": false, // 有未使用的参数时，抛出错误
     "noImplicitReturns": true, // 并不是所有函数里的代码都有返回值时，抛出错误
     "noFallthroughCasesInSwitch": true, // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
-
     "declaration": true, // 生成相应的 '.d.ts' 文件
     "sourceMap": true, // 生成相应的 '.map' 文件
-
     /* 模块解析选项 */
     "moduleResolution": "node", // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)。默认是classic
     "baseUrl": "./", // 用于解析非相对模块名称的基目录
     "types": [ /* 要包含的类型声明文件路径列表*/
-      "./typings",
-      "./node_modules/@types"
-    ],
-
-    "exclude": [
-      "node_modules",
-      "**/*.spec.ts"
+      "./typings"
     ],
     /* Completeness */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
-  }
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ],
 }
