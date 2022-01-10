@@ -1,6 +1,6 @@
 {
   "name": "@stormbuf/vuepress-plugin-rss",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Vuepress plugin - rss",
   "keywords": [
     "vuepress",
