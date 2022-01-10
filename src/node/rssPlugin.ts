@@ -1,5 +1,6 @@
-import type { Page, Plugin, App } from '@vuepress/core'
+import type { Page } from '@vuepress/core'
 import { Feed } from 'feed';
+import * as fs from 'fs/promises'
 import { GitPluginPageData } from './types';
 
 export interface RssPluginOptions {
@@ -26,13 +27,16 @@ export interface RssPluginOptions {
      * default: 20
      */
     count?: number
+
+    dest: string
 }
 
 const rssPluginDefaultOptions: RssPluginOptions = {
     websiteDomain: "",
     content: true,
     protocol: "RSSv2",
-    count: 20
+    count: 20,
+    dest: ''
 }
 
 export class RssPlugin {
@@ -49,7 +53,7 @@ export class RssPlugin {
 
     pages: Page<GitPluginPageData>[] = [];
 
-    generate() {
+    public generate() {
         const pages = this.pages.sort(function (a, b) {
 
             if (a.data.git || b.data.git) {
@@ -69,34 +73,28 @@ export class RssPlugin {
         // todo 待定添加属性 
         const feed = new Feed({
             title: pages[0].title,
-            id: "http://example.com/",
-            link: "http://example.com/",
+            id: this.options.websiteDomain,
+            link: this.options.websiteDomain,
             language: "en", // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-            image: "http://example.com/image.png",
-            favicon: "http://example.com/favicon.ico",
-            copyright: "All rights reserved 2013, John Doe",
-            updated: new Date(2013, 6, 14), // optional, default = today
-            generator: "awesome", // optional, default = 'Feed for Node.js'
-            feedLinks: {
-                json: "https://example.com/json",
-                atom: "https://example.com/atom"
-            },
-            author: {
-                name: "John Doe",
-                email: "johndoe@example.com",
-                link: "https://example.com/johndoe"
-            }
+            copyright: "",
+            updated: new Date(), // optional, default = today
+            generator: "https://github.com/stormbuf/vuepress-plugin-rss" // optional, default = 'Feed for Node.js'
         })
 
         pages.forEach(page => {
             feed.addItem({
-                title: page.title,
-                id: page.url,
-                link: page.url,
-                content: page.content,
+                title: page.data.title,
+                id: this.options.websiteDomain+page.data.path,
+                link: this.options.websiteDomain+page.data.path,
+                content: this.options.content?page.contentRendered:undefined,
                 date: new Date(page.data.git.updatedTime?page.data.git.updatedTime:0),
+                description: ''
             })
         })
+
+        const rss = feed.rss2();
+
+        fs.writeFile(this.options.dest+'/rss.xml',rss).catch((err)=>console.error(err))
     }
 
 }

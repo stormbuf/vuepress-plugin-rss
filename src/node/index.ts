@@ -4,7 +4,7 @@ import type { GitPluginPageData } from './types'
 
 
 
-export const rssplugin: Plugin<RssPluginOptions> = (
+const rssplugin: Plugin<RssPluginOptions> = (
     options: RssPluginOptions,app
 ) =>{
 
@@ -17,8 +17,11 @@ export const rssplugin: Plugin<RssPluginOptions> = (
             rssplugin.pages.push(page)
         },
 
-        onGenerated: async (app: App) => void {
-            
+        onGenerated: async (app: App) => {
+            rssplugin.options.dest = app.options.dest
+            rssplugin.generate()
         }
     }
 }
+
+export default rssplugin
