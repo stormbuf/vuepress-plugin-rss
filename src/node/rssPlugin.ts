@@ -66,7 +66,7 @@ export class RssPlugin {
 
     public filter(path: string): boolean {
         for (const item of this.options.ignorePath) {
-            if (item == path) {
+            if (path.match(item)) {
                 return true
             }
         }
