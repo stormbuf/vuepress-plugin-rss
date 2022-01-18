@@ -79,7 +79,7 @@ export class RssPlugin {
                 break
             }
         }
-        if (this.options.generatePath) {
+        if (this.options.generatePath.length == 0) {
             pass = true
         }
         if (!pass) {
