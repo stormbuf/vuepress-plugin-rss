@@ -65,7 +65,7 @@ export class RssPlugin {
     pages: Page<GitPluginPageData>[] = [];
 
     public filter(path: string): boolean {
-        for (const item in this.options.ignorePath) {
+        for (const item of this.options.ignorePath) {
             if (item == path) {
                 return true
             }
