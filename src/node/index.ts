@@ -14,6 +14,9 @@ const rssplugin: Plugin<RssPluginOptions> = (
         name: "@stormbuf/vuepress-plugin-rss",
 
         extendsPage: async (page:Page<GitPluginPageData>) => {
+            if(rssplugin.filter(page.path)){
+                return
+            }
             rssplugin.pages.push(page)
         },
 
