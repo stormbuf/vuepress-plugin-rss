@@ -35,6 +35,12 @@ export interface RssPluginOptions {
     dest: string
 
     /**
+     * pages that  participate in generating RSS. generatePath before ignorePath.
+     * default: []
+     */
+    generatePath: string[]
+
+    /**
      * pages that do not participate in generating RSS.
      * default: ['/404.html','/404.htm']
      */
@@ -47,6 +53,7 @@ const rssPluginDefaultOptions: RssPluginOptions = {
     protocol: "RSSv2",
     count: 20,
     dest: '',
+    generatePath: [],
     ignorePath: ['/404.html', '/404.htm']
 }
 
@@ -65,6 +72,20 @@ export class RssPlugin {
     pages: Page<GitPluginPageData>[] = [];
 
     public filter(path: string): boolean {
+        let pass: boolean = false
+        for (const item of this.options.generatePath) {
+            if (path.match(item)) {
+                pass = true
+                break
+            }
+        }
+        if (this.options.generatePath) {
+            pass = true
+        }
+        if (!pass) {
+            return true
+        }
+
         for (const item of this.options.ignorePath) {
             if (path.match(item)) {
                 return true
