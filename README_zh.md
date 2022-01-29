@@ -1,9 +1,9 @@
 # vuepress-plugin-rss
  [English](README.md)  [中文](README_zh.md)
 
-面向 VuePress 2.x ，生成 RSS, Atom, 和 JSON feeds 的插件
+面向 VuePress 2.x ，生成 RSS, Atom, 和 JSON feeds 的插件。
 
-基于 `@vuepress/plugin-git`
+基于 `@vuepress/plugin-git`。
 
 `@vuepress/plugin-git` 通过 git 获取 md 最后的 commit 时间。
 

@@ -30,16 +30,18 @@ export default defineUserConfig<DefaultThemeOptions> ( {
         // default: 20
         // number
         count: 60,
-        // Whether to get the content of a page
+        // whether to get the content of a page
         // default: true
         // boolearn
         content: false,
         // pages that participate in generating RSS. generatePath before ignorePath.
-        // Arrary<string>
+        // support regex
+        // arrary<string>
         // default: []
         generatePath: ['.* ( html|htm ) '],
         // pages that do not participate in generating RSS.
-        // Arrary<string>
+        // support regex
+        // arrary<string>
         // default: ['/404.html','/404.htm']
         ignorePath: ['/404.html', '/404.htm','/HelloWorld.html']
       }
